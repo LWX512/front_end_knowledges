@@ -1,0 +1,19 @@
+{
+  "name": "front_end_knowledges",
+  "version": "1.0.0",
+  "description": "前端工作的一个总结",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LiuWuXing0512/front_end_knowledges.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LiuWuXing0512/front_end_knowledges/issues"
+  },
+  "homepage": "https://github.com/LiuWuXing0512/front_end_knowledges#readme"
+}
