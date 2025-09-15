@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>柱状图</title>
+  </head>
+  <body>
+    <canvas width="500" height="500" id="canvas"></canvas>
+
+    <script>
+      // 定制假数据，柱状图的数据格式为数值数组
+      const data = [16, 68, 20, 30, 54];
+      const labels = ["JAN", "FEB", "MAR", "APR", "MAY"]; //x轴标签
+
+      const dl = data.length;
+      const ll = labels.length;
+      // canvas dom 元素
+      const canvas = document.getElementById("canvas");
+      // 获取 canvas 上下文
+      const ctx = canvas.getContext("2d");
+      // 设置填充颜色为灰色
+      ctx.fillStyle = "gray";
+      // 填充整个画布
+      ctx.fillRect(0, 0, 500, 500);
+
+      const axisLines = () => {
+        // 绘制x轴和y轴
+        // 设置填充颜色为黑色
+        ctx.fillStyle = "black";
+        // 绘制线宽 为 2.0
+        ctx.lineWidth = 2.0;
+        ctx.beginPath(); // 开始绘制
+        ctx.moveTo(30, 10); // 从(30,10)开始绘制
+        ctx.lineTo(30, 460); // 绘制到(30,460)
+        ctx.lineTo(490, 460); // 绘制到(490,460)
+        ctx.stroke(); // 结束绘制
+        ctx.fillStyle = "black"; // 设置填充颜色为黑色
+        for (var i = 0; i <= dl; i++) {
+          ctx.fillText((dl - i) * 20 + "", 4, i * 80 + 60); // 绘制y轴上的刻度
+          ctx.beginPath(); // 开始绘制
+          ctx.moveTo(25, i * 80 + 60); // 从(25,i*80+60)开始绘制
+          ctx.lineTo(30, i * 80 + 60); // 绘制到(30,i*80+60)
+          ctx.stroke(); // 结束绘制
+        }
+
+        for (var i = 0; i <= ll; i++) {
+          ctx.fillText(labels[i], 50 + i * 100, 475); // 绘制x轴上的刻度
+        }
+      };
+
+      // 绘制 柱状图 的函数
+      const drawBar = () => {
+        // 设置柱状图的颜色
+        ctx.fillStyle = "red";
+        // 设置柱状图的宽度
+        const barWidth = 40;
+        // 设置柱状图之间的间距
+        const barSpace = 60;
+        // 设置柱状图的高度
+        const barHeight = 460;
+        // 设置柱状图的位置
+        const barPosition = 40;
+
+        // 遍历数据，绘制柱状图
+        data.forEach((item, index) => {
+          // 计算柱状图的高度
+          const height = item * dl;
+          console.log(height);
+          // 计算柱状图的起始位置
+          const x = barPosition + index * (barWidth + barSpace);
+          // 计算柱状图的结束位置
+          const y = barHeight - height;
+          // 绘制柱状图
+          ctx.fillRect(x, y, barWidth, height);
+        });
+      };
+
+      axisLines(); // 绘制坐标轴
+      drawBar();
+    </script>
+  </body>
+</html>

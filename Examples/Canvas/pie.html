@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>pie</title>
+  </head>
+  <body>
+    <canvas width="500" height="500" id="canvas"></canvas>
+    <script>
+      const canvas = document.getElementById("canvas"); // 获取canvas元素
+      const ctx = canvas.getContext("2d"); // 获取绘图上下文
+      const data = [100, 68, 20, 30, 100]; // 数据
+      const colors = ["orange", "green", "blue", "yellow", "teal"]; //颜色
+
+      const total = data.reduce((a, b) => a + b, 0); // 数据总和
+
+      const preAngle = 0; // 起始角度
+
+      for (let i = 0; i < data.length; i++) {
+        const fraction = data[i] / total; // 每个数据的占比
+        const angle = preAngle + fraction * Math.PI * 2; // 每个数据的结束角度
+        // 普通颜色设置
+        ctx.fillStyle = colors[i]; // 设置填充颜色
+        // // 渐变色设置
+        // const grad = ctx.createLinearGradient(250, 250, 10, 250, 250, 100); // 创建渐变
+        // grad.addColorStop(0, "white"); // 设置渐变起始颜色
+        // grad.addColorStop(1, colors[i]); // 设置渐变结束颜色
+        // ctx.fillStyle = grad; // 设置填充颜色为渐变
+
+        ctx.beginPath(); // 开始路径
+        ctx.moveTo(250, 250); // 移动到圆心
+        ctx.arc(250, 250, 100, preAngle, angle, false); // 绘制弧线
+        ctx.lineTo(250, 250); // 移动到圆心
+        ctx.fill(); // 填充颜色
+        ctx.strokeStyle = "black"; // 设置边框颜色
+        ctx.stroke(); // 绘制边框
+        preAngle = angle; // 更新起始角度
+      }
+
+      ctx.fillStyle = "black";
+      ctx.font = "24pt sans-serif";
+      const text = "sales Data from 2025";
+      const metrics = ctx.measureText(text);
+      ctx.fillText(text, (canvas.width - metrics.width) / 2, 400);
+    </script>
+  </body>
+</html>

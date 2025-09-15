@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>globalAlpha</title>
+  </head>
+  <body>
+    <!-- 图像填充 -->
+    <canvas width="500" height="500" id="canvas"></canvas>
+    <script>
+      // 图像填充
+      const canvas = document.getElementById("canvas");
+      const ctx = canvas.getContext("2d");
+      const pat1 = ctx.createPattern(img1, "repeat"); // repeat-x repeat-y repeat
+      ctx.fillStyle = pat1; // 设置填充样式
+      ctx.fillRect(0, 0, 100, 100); // 填充矩形
+
+      const pat2 = ctx.createPattern(img2, "repeat-y"); // repeat-x repeat-y repeat
+      ctx.fillStyle = pat2; // 设置填充样式
+      ctx.translate(200, 0); // 平移
+      ctx.fillRect(0, 0, 100, 100); // 填充矩形
+    </script>
+    <!-- // 不透明度 -->
+    <canvas width="500" height="500" id="canvas1"></canvas>
+    <script>
+      // 不透明度
+      const canvas1 = document.getElementById("canvas1");
+      const ctx = canvas1.getContext("2d");
+      ctx.fillStyle = "red";
+      ctx.globalAlpha = 50 / 100; // 设置全局透明度
+      ctx.fillRect(0, 0, 50, 50); // 填充矩形
+      ctx.globalAlpha = 30 / 100; // 设置全局透明度
+      ctx.fillRect(25, 25, 50, 50); // 填充矩形
+      ctx.globalAlpha = 1.0; // 设置全局透明度
+    </script>
+
+    <!-- 变换 -->
+    <canvas width="500" height="500" id="canvas2"></canvas>
+    <script>
+      // 变换
+      const canvas2 = document.getElementById("canvas2");
+      const ctx = canvas2.getContext("2d");
+      ctx.fillStyle = "red";
+      for (let i = 0; i < 5; i++) {
+        ctx.transkate(100, 0); // 平移
+        ctx.fillRect(0, 0, 50, 0 * 5 + 5); // 填充矩形
+      }
+    </script>
+  </body>
+</html>
